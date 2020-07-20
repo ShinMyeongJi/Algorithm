@@ -3,6 +3,9 @@
 #include <vector>
 using namespace std;
 
+/**
+ * BOJ 4948 
+ */
 int main(void){
     while(true) {
         int n;
