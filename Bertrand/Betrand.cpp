@@ -2,31 +2,43 @@
 #include <queue>
 #include <vector>
 using namespace std;
-
+#define MAX 123456
 /**
- * BOJ 4948 
+ * BOJ 4948 (시간복잡도 : N²)
  */
 int main(void){
     while(true) {
         int n;
- 
-        vector<int> primes;
-
+        int cnt = 0;
         cin >> n;
 
         if(n == 0) break;
+        
+        bool notPrimes[2*n] = {};
 
-        for(int i = n+1; i < 2*n; i++){
-            int number = 0;
-            for(int j = 1; j <= i; j++){   
-                if(i%j==0){
-                    number++;
-                }
+        notPrimes[0] = true;
+        notPrimes[1] = true;
+        
+        for(int i = 2; i <= 2*n; i++){
+            if(notPrimes[i]) continue;
+            for(int j = i*2; j < 2*n; j+=i){
+                notPrimes[j] = true;
             }
-            if(number == 2) primes.push_back(i);
         }
+    
+        if(n != 1) {
+            for(int i = n+1; i < 2*n; i++){
+                cnt += !notPrimes[i] ? 1 : 0;
+            }
+        }else{
+            for(int i = n+1; i <= 2*n; i++){
+                cnt += !notPrimes[i] ? 1 : 0;
+            }
+        }
+        
 
-        cout << primes.size() << endl;
+        cout << cnt << endl;
         
     }
 }
+
