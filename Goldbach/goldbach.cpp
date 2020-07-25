@@ -3,8 +3,6 @@
 #define MAX 1000000
 using namespace std;
 
-
-
 bool primeCheck[MAX];
 vector<int> primes;
 
@@ -29,6 +27,8 @@ void eratosthenes(){
 }
 
 int main(void){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     eratosthenes();
 
     while(true){
@@ -39,7 +39,7 @@ int main(void){
 
         for(int i = 0; i < primes.size(); i++){
             if(primeCheck[input - primes[i]]){
-                cout << input << " = " << primes[i] << " + " << input - primes[i] << endl;
+                cout << input << " = " << primes[i] << " + " << input - primes[i] << "\n";
                 break;
             }
         }
