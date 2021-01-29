@@ -12,6 +12,7 @@ public class Main {
 
         board = new char[N][N];
 
+
         for(int i = 0; i < N; i++) {
             String record = kb.next();
             for(int j = 0; j < board[i].length; j++) {
@@ -19,24 +20,41 @@ public class Main {
             }
         }
 
+        // 가로
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N-1; j++) {
-                swap(board[i][j], board[i][j+1]);
+                //swap(board[i][j], board[i][j+1]);
+                char temp = board[i][j];
+                board[i][j] = board[i][j+1];
+                board[i][j+1] = temp;
 
                 arrCheck();
 
-                swap(board[i][j+1], board[i][j]);
+                //swap(board[i][j], board[i][j+1]);
+
+                temp = board[i][j];
+                board[i][j] = board[i][j+1];
+                board[i][j+1] = temp;
             }
         }
 
 
-        for(int i = 0; i < N-1; i++){
-            for(int j = 0; j < N; j++) {
-                swap(board[i][j], board[i+1][j]);
+        for(int i = 0; i < N; i++){
+            for(int j = 0; j < N-1; j++) {
+                //swap(board[j][i], board[j+1][i]);
+
+                char temp = board[j][i];
+                board[j][i] = board[j+1][i];
+                board[j+1][i] = temp;
+
 
                 arrCheck();
 
-                swap(board[i+1][j], board[i][j]);
+                //swap(board[j][i], board[j+1][i]);
+
+                temp = board[j][i];
+                board[j][i] = board[j+1][i];
+                board[j+1][i] = temp;
             }
         }
 
@@ -59,23 +77,22 @@ public class Main {
                 }else{
                     count = 1;
                 }
-
-                max = Math.max(count, max);
+                max = Math.max(max, count);
 
             }
         }
 
 
-        for(int i = 0; i < N-1; i++) {
+        for(int i = 0; i < N; i++) {
             int count = 1;
-            for(int j = 0; j < N; j++) {
-                if(board[i][j] == board[i+1][j]){
+            for(int j = 0; j < N-1; j++) {
+                if(board[j][i] == board[j+1][i]){
                     count++;
                 }else{
                     count = 1;
                 }
 
-                max = Math.max(count, max);
+                max = Math.max(max, count);
             }
         }
 
