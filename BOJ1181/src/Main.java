@@ -13,7 +13,7 @@ public class Main {
         N = kb.nextInt();
         String[] words = new String[N];
         for(int i = 0; i < N; i++) {
-            words[i] = kb.nextLine();
+            words[i] = kb.next();
         }
 
         Arrays.sort(words, new Comparator<String>() {

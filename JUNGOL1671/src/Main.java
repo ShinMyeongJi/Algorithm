@@ -4,23 +4,23 @@ import java.util.Scanner;
  * JONGOL 1671
  */
 public class Main {
-    private static final int SIZE = 111;
+    private static final int SIZE = 101;
     public static void main(String[] args) {
         int N = 0;
         Scanner kb = new Scanner(System.in);
         N = kb.nextInt();
         int[][] interval = new int[N][2];
 
-        int[][] points = new int[SIZE][SIZE];
+            int[][] points = new int[SIZE][SIZE];
 
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j < 2; j++) {
-                interval[i][j] = kb.nextInt();
+            for(int i = 0; i < N; i++) {
+                for(int j = 0; j < 2; j++) {
+                    interval[i][j] = kb.nextInt();
+                }
             }
-        }
 
-        for (int i = 0; i < N; i++) {
-            for(int j = interval[i][0]; j < interval[i][0] + 10; j++) {
+            for (int i = 0; i < N; i++) {
+                for(int j = interval[i][0]; j < interval[i][0] + 10; j++) {
                 for(int k = interval[i][1]; k < interval[i][1] + 10; k++) {
                     points[j][k] = 1;
                 }
@@ -40,6 +40,5 @@ public class Main {
         }
 
         System.out.println(cnt);
-
     }
 }

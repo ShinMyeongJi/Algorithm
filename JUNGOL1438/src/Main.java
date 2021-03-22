@@ -16,12 +16,37 @@ public class Main {
         Scanner kb = new Scanner(System.in);
         N = kb.nextInt();
 
-        // 각 좌표들의 간격
+        int[][] test = new int[N][N];
+
+
+        // 각 축들과의 간격
         int[][] interval = new int[N][2];
 
+        // 유효 좌표
         int[][] points = new int[SIZE][SIZE];
 
         for(int i = 0; i < N; i++) {
+            for(int j = 0; j < N; j++) {
+                if(j == 0) {
+                    test[i][0] = i + 1;
+                }else{
+                    test[i][j] = test[i][j-1] + N;
+                }
+
+
+            }
+        }
+
+        for(int i = 0; i < N; i++) {
+            for(int j =0; j < N; j++) {
+                System.out.print(test[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
+
+        /*for(int i = 0; i < N; i++) {
             for(int j = 0; j < 2; j++) {
                 interval[i][j] = kb.nextInt();
             }
@@ -42,6 +67,6 @@ public class Main {
             }
         }
 
-        System.out.println(cnt);
+        System.out.println(cnt);*/
     }
 }
