@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * JONGOL 1031
+ */
+
 public class Main {
 
     public static final int SIZE = 5;
@@ -71,8 +75,8 @@ public class Main {
         for(int i = 0; i < SIZE; i++) {
             int cnt = 0;
             for(int j = 0; j < SIZE; j++) {
-                if(isVisited[i][j])  ++cnt;
-                if(cnt == 5) ++numBingo;
+                if(isVisited[i][j])  cnt++;
+                if(cnt == 5) numBingo++;
             }
         }
 
@@ -86,8 +90,8 @@ public class Main {
         for(int i = 0; i < SIZE; i++) {
             int cnt = 0;
             for(int j = 0; j < SIZE; j++) {
-                if(isVisited[j][i])  ++cnt;
-                if(cnt == 5) ++numBingo;
+                if(isVisited[j][i])  cnt++;
+                if(cnt == 5) numBingo++;
             }
         }
 
@@ -99,7 +103,7 @@ public class Main {
         int numBingo = 0;
         int j = SIZE - 1;
         for(int i = 0; i < SIZE; i++) {
-            if(isVisited[i][j--]) ++numBingo;
+            if(isVisited[i][j--]) numBingo++;
             if(numBingo == 5) return 1;
         }
 
@@ -113,7 +117,7 @@ public class Main {
         int numBingo = 0;
 
         for(int i = 0; i < SIZE; i++) {
-            if(isVisited[i][i]) ++numBingo;
+            if(isVisited[i][i]) numBingo++;
             if(numBingo == 5) return 1;
         }
 

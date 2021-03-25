@@ -4,8 +4,9 @@ public class Main {
         linkedList.addFirst(20);
         linkedList.addFirst(30);
         linkedList.addFirst(40);
-        System.out.println(linkedList.toString());
-        System.out.println(linkedList.indexOf(20));
+        LinkedList.ListIterator iterator = linkedList.Iterator();
+        System.out.println(iterator.next());
+        System.out.println(iterator.next());
 
     }
 }

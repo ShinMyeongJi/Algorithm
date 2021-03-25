@@ -113,4 +113,25 @@ public class LinkedList {
     }
 
 
+    public ListIterator Iterator() {
+        return new ListIterator();
+    }
+
+    public class ListIterator{
+        private Node temp;
+        private Node lastRetruned;
+        private int returnCount;
+
+        public ListIterator() {
+            this.temp = head;
+            this.returnCount = 0;
+        }
+
+        public Object next(){
+            lastRetruned = temp;
+            temp = temp.next;
+            returnCount++;
+            return lastRetruned.data;
+        }
+    }
 }
