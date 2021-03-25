@@ -107,28 +107,6 @@ public class Main {
 
 
 
-        //아래
-        for(int li = 1; li <= 4; li++) {
-            if(i+li >= 18 || i + li <= 1 || j > 18 || j < 1) break;
-            if(num == board[i+li][j]) {
-
-                cnt++;
-            }else{
-                cnt = 1;
-                break;
-            }
-
-            if(cnt == 5){
-                if(num != board[i + li + 1][j] && num != board[i - 1][j]){
-
-                    System.out.println(num);
-                    System.out.println((ori_i+1) + " " + (ori_j+1));
-                    return true;
-
-                }
-            }
-        }
-
         return false;
 
 
