@@ -120,18 +120,24 @@ public class LinkedList {
     public class ListIterator{
         private Node temp;
         private Node lastRetruned;
-        private int returnCount;
+        private int nextIndex;
 
         public ListIterator() {
             this.temp = head;
-            this.returnCount = 0;
+            this.nextIndex = 0;
         }
 
         public Object next(){
             lastRetruned = temp;
             temp = temp.next;
-            returnCount++;
+            nextIndex++;
             return lastRetruned.data;
         }
+
+        public boolean hasNext() {
+            return nextIndex < size();
+        }
     }
+
+
 }
