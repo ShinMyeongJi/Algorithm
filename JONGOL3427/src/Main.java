@@ -50,4 +50,5 @@ public class Main {
         if(cnt < min) min = cnt;
         cnt = 0;
     }
+    
 }
