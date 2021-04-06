@@ -38,6 +38,8 @@ public class Queue implements QueueIF{
     @Override
     public void dequeue() {
 
+        if(isEmpty()) return;
+
         Node next = this.head.next;
         Node temp = this.head;
 
@@ -63,6 +65,11 @@ public class Queue implements QueueIF{
     @Override
     public void clear() {
 
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
     public void print() {

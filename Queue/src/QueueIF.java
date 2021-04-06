@@ -4,4 +4,5 @@ public interface QueueIF {
     void dequeue();
     Object peek();
     void clear();
+    int size();
 }
