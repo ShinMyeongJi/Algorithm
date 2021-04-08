@@ -3,9 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-/**
- * JONGOL 1158
- */
 public class Main {
     public static void main(String[] args) throws IOException {
         int N = 0;
@@ -21,25 +18,18 @@ public class Main {
             nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        int cnt = 0;
-
-        for(int i = 1; i < N; i++) {
-            int cur = nums[i];
-            int index = i;
-            for(int j = i - 1; j >= 0; j--) {
-                if(cur < nums[j]) {
-                    int temp = nums[index];
-                    nums[index] = nums[j];
-                    nums[j] = temp;
-                    index = j;
-                    cnt++; //JONGOL1814
-                }
+        for(int i = 0; i < N-1; i++) {
+            for(int j = 0; j < N - i - 1; j++)
+            if(nums[j] > nums[j+1]) {
+                int temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
             }
             for(int k = 0; k < N; k++) {
                 System.out.print(nums[k] + " ");
             }
             System.out.println();
         }
-        System.out.println(cnt); //JONGOL1814
+
     }
 }
