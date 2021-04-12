@@ -27,6 +27,7 @@ public class Main {
 
         int N = 0;
 
+
         BufferedReader bw = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(bw.readLine());
 

@@ -24,7 +24,7 @@ public class Main {
 
         // 유효 좌표
         int[][] points = new int[SIZE][SIZE];
-
+        
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
                 if(j == 0) {
@@ -36,6 +36,7 @@ public class Main {
 
             }
         }
+
 
         for(int i = 0; i < N; i++) {
             for(int j =0; j < N; j++) {
