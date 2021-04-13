@@ -3,12 +3,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * JONGOL 3517
+ */
 public class Main {
     public static void main(String[] args) throws IOException {
         int N = 0;
         int QN = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        StringBuilder sb = new StringBuilder();
         N = Integer.parseInt(br.readLine());
         int[] sortedArr = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -25,9 +28,10 @@ public class Main {
         }
 
         for(int i = 0; i < QN; i++) {
-            System.out.print(binarySearch(sortedArr, 0, N - 1, qVals[i]));
-            if(i != QN - 1) System.out.print(" ");
+            sb.append(binarySearch(sortedArr, 0, N - 1, qVals[i]));
+            if(i != QN - 1) sb.append(" ");
         }
+        System.out.println(sb.toString());
 
         br.close();
     }
