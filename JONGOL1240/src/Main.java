@@ -10,10 +10,11 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         Long val = Long.parseLong(br.readLine());
-        System.out.println(binarySearch(val));
+        //System.out.println(binarySearch(val));
+        System.out.println(babilonia(val, 2));
     }
 
-    public static long binarySearch(long value) {
+    /*public static long binarySearch(long value) {
         long start = 1;
         long end = value;
         long mid = 0;
@@ -28,5 +29,15 @@ public class Main {
             }
         }
         return res;
+    }*/
+
+    // 조건을 어떻게 걸어주냐에 따라 다름
+    //
+    public static long babilonia(long x, long xn) {
+        for(int i = 0; i < 100; i++) {
+            xn = (xn + x / xn) / 2;
+        }
+
+        return xn;
     }
 }
