@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/BubbleSort/BubbleSort.iml" filepath="$PROJECT_DIR$/BubbleSort/BubbleSort.iml" />
       <module fileurl="file://$PROJECT_DIR$/CandyGame/CandyGame.iml" filepath="$PROJECT_DIR$/CandyGame/CandyGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/Decompostion/Decompostion.iml" filepath="$PROJECT_DIR$/Decompostion/Decompostion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DetectPangram/DetectPangram.iml" filepath="$PROJECT_DIR$/DetectPangram/DetectPangram.iml" />
       <module fileurl="file://$PROJECT_DIR$/Fibonacci/Fibonacci.iml" filepath="$PROJECT_DIR$/Fibonacci/Fibonacci.iml" />
       <module fileurl="file://$PROJECT_DIR$/H-index/H-index.iml" filepath="$PROJECT_DIR$/H-index/H-index.iml" />
       <module fileurl="file://$PROJECT_DIR$/InsertSort/InsertSort.iml" filepath="$PROJECT_DIR$/InsertSort/InsertSort.iml" />
