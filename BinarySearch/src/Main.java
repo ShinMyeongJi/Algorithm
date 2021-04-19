@@ -141,32 +141,20 @@ public class Main
 
         int q = in.nextInt();
         for (int i = 0; i < q; i++) {
-            bw.write(binarySearch(in.nextInt()) + " ");
+            bw.write(binarySearch(arr,0, n-1 , in.nextInt()) + " ");
         }
         bw.flush();
         bw.close();
     }
 
-    private int binarySearch(int iKey) {
-        int mid;
-        int left = 0;
-        int right = arr.length - 1;
+    private int binarySearch(int[] arr, int low, int high, int target) {
+        if(low > high) return -1;
 
-        while (right >= left) {
-            mid = (right + left) / 2;
+        int mid = (low + high) / 2;
 
-            if (iKey == arr[mid]) {
-                return mid;
-            }
-
-            if (iKey < arr[mid]) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-
-        }
-        return -1;
+        if(arr[mid] == target) return mid;
+        else if(arr[mid] > target) return binarySearch(arr, low, mid-1 ,target);
+        else return binarySearch(arr, mid + 1, high, target);
     }
 }
 
