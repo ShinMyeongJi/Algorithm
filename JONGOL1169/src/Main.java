@@ -17,7 +17,8 @@ public class Main {
 
         arr = new int[7];
         arr[0] = 1;
-        dice1(0);
+        //dice1(1);
+        dice2(1);
         /*if(M == 1) dice1(1);
         else if(M == 2) dice2(N);
         else if(M == 3) dice3(N);*/
@@ -28,17 +29,22 @@ public class Main {
             print();
             return;
         }
-
         for(int i = 1; i <= 6; i++) {
             arr[step] = i;
             dice1(step + 1);
         }
-
-
     }
 
-    private static void dice2(int N) {
+    private static void dice2(int step) {
+        if(step > N) {
+            print();
+            return;
+        }
 
+        for(int i = arr[step-1]; i <= 6; i++) {
+            arr[step] = i;
+            dice2(step + 1);
+        }
     }
 
     private static void dice3(int N) {
