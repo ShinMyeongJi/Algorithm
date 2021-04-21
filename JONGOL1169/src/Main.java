@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 /**
  * JONGOL 1169
  * 재귀 응용 문제 풀고 다시 풀어보기!
+ * ISSUE #3
  */
 public class Main {
     static int N;
