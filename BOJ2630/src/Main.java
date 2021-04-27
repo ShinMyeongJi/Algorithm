@@ -6,6 +6,7 @@ import java.util.*;
 public class Main {
 
     static int[][] board;
+    static int wcnt, bcnt = 0;
     public static void main(String[] args) throws IOException {
 
         int N = 0;
@@ -33,5 +34,10 @@ public class Main {
                 if(board[i][j] == 1) cnt++;
             }
         }
+
+        if(cnt == N * N) bcnt++;
+        if(cnt == 0) wcnt++;
+        
+        
     }
 }
