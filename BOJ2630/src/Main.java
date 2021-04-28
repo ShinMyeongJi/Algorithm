@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * BOJ 2630
+ */
 public class Main {
 
     static int[][] board;
@@ -15,7 +18,6 @@ public class Main {
         board = new int[N][N];
 
 
-        
         for(int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             for(int j = 0; j < N; j++) {
@@ -24,7 +26,8 @@ public class Main {
         }
 
         split(0, 0, N);
-
+        System.out.println(wcnt);
+        System.out.println(bcnt);
     }
 
     public static void split(int x, int y, int N) {
@@ -36,8 +39,13 @@ public class Main {
         }
 
         if(cnt == N * N) bcnt++;
-        if(cnt == 0) wcnt++;
-        
+        else if(cnt == 0) wcnt++;
+        else {
+            split(x, y, N/2);
+            split(x + N/2, y, N/2);
+            split(x, y + N/2, N/2);
+            split(x + N/2, y + N/2, N/2);
+        }
         
     }
 }
