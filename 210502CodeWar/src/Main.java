@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * 210502
@@ -12,8 +15,35 @@ public class Main {
         System.out.println(top3("  //wont won't won't ").getClass());
     }
 
-    public static List<String> top3(String s) {
-        String[] words = s.toLowerCase().replaceAll("[^\\w\\s\']","").trim().split("\\s+");
+    public static List<String> top3(String str) {
+        final Map<String, Integer> wordsCount = new HashMap<>();
+
+        Pattern pattern = Pattern.compile("[A-Za-z][A-Za-z']*");
+        Matcher matcher = pattern.matcher(str);
+        while (matcher.find()) {
+            String s = matcher.group().toLowerCase();
+            wordsCount.put(s, wordsCount.getOrDefault(s, 1) + 1);
+        }
+
+        List<Map.Entry<String, Integer>> topWords = new ArrayList<>(wordsCount.entrySet());
+        topWords.sort(Map.Entry.comparingByValue());
+        ArrayList<String> result = new ArrayList<>();
+        int j = 0;
+        for (int i = topWords.size() - 1; i >= 0; i--) {
+            String s = topWords.get(i).getKey();
+            if (j > 2 || s == null || s.length() == 0) {
+                break;
+            }
+            if (Character.isAlphabetic(s.charAt(0))) {
+                result.add(j, topWords.get(i).getKey());
+                j++;
+            }
+        }
+
+        result.trimToSize();
+        return result;
+
+        /*String[] words = s.toLowerCase().replaceAll("[^\\w\\s\']","").trim().split("\\s+");
         Map<String, Integer> countChks = new HashMap<>();
         for(int i = 0; i < words.length; i++) {
             if(!countChks.containsKey(words[i])) countChks.put(words[i], 1);
@@ -45,6 +75,6 @@ public class Main {
             }
         }
 
-        return result;
+        return result;*/
     }
 }
