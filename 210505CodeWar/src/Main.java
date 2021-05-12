@@ -1,3 +1,7 @@
+/**
+ * 210512
+ * CodeWars - Double Cola
+ */
 public class Main {
     public static void main(String[] args) {
         System.out.println(WhoIsNext(new String[]{ "Sheldon", "Leonard", "Penny", "Rajesh", "Howard" }, 52));
@@ -5,18 +9,15 @@ public class Main {
 
     public static String WhoIsNext(String[] names, int n)
     {
-        n = n - 1;
-
-        while(n >= 5) {
-            n = n - 4;
-            n = (int) Math.floor(n / 2);
+        int len = names.length;
+        while(n > len) {
+            n = (n - (len - 1)) / 2;
         }
 
-        return names[n];
+        return names[n - 1];
+
         /*
-
         내가 짠 코드
-
         Queue<String> queue = new LinkedList<>(Arrays.asList(names));
 
         for(int i = 1; i < n; i++) {
