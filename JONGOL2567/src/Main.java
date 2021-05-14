@@ -22,7 +22,7 @@ public class Main {
         findRules(N * N % P);
     }
 
-    public static void findRules(int r) { // 나머
+    public static void findRules(int r) { // 나머지 계산
         if(list.indexOf(r) != -1) {
             if(list.size() == list.indexOf(r) + 1) System.out.println(1);
             else System.out.println(list.size());
