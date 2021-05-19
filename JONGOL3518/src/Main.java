@@ -18,12 +18,35 @@ public class Main {
 
         quick(arr, 0, N - 1);
 
+        for(int i = 0; i < N; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+
     }
 
     public static void quick(int[] arr, int low, int high) {
         if(low < high) {
+            int i = low - 1;
+            int pivot = arr[high];
 
+            for(int j = low; j < high; j++) {
+                if(arr[j] < pivot) {
+                    swap(arr[++i], arr[j]);
+                }
+            }
+
+            swap(arr[++i], arr[high]);
+
+            quick(arr, low, i - 1);
+            quick(arr, i + 1, high);
         }
+    }
+
+    public static void swap(int a, int b){
+        int temp = a;
+        a = b;
+        b = temp;
     }
 
 }
