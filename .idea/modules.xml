@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/210505CodeWar/210505CodeWar.iml" filepath="$PROJECT_DIR$/210505CodeWar/210505CodeWar.iml" />
       <module fileurl="file://$PROJECT_DIR$/210526CodeWar/210526CodeWar.iml" filepath="$PROJECT_DIR$/210526CodeWar/210526CodeWar.iml" />
       <module fileurl="file://$PROJECT_DIR$/210527CodeWars/210527CodeWars.iml" filepath="$PROJECT_DIR$/210527CodeWars/210527CodeWars.iml" />
+      <module fileurl="file://$PROJECT_DIR$/210601CodeWar/210601CodeWar.iml" filepath="$PROJECT_DIR$/210601CodeWar/210601CodeWar.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Algorithm.iml" filepath="$PROJECT_DIR$/.idea/Algorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ1018/BOJ1018.iml" filepath="$PROJECT_DIR$/BOJ1018/BOJ1018.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ1062/BOJ1062.iml" filepath="$PROJECT_DIR$/BOJ1062/BOJ1062.iml" />
@@ -24,6 +25,7 @@
       <module fileurl="file://$PROJECT_DIR$/BOJ2108/BOJ2108.iml" filepath="$PROJECT_DIR$/BOJ2108/BOJ2108.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ2309/BOJ2309.iml" filepath="$PROJECT_DIR$/BOJ2309/BOJ2309.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ2630/BOJ2630.iml" filepath="$PROJECT_DIR$/BOJ2630/BOJ2630.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BOJ2805/BOJ2805.iml" filepath="$PROJECT_DIR$/BOJ2805/BOJ2805.iml" />
       <module fileurl="file://$PROJECT_DIR$/BOJ7568/BOJ7568.iml" filepath="$PROJECT_DIR$/BOJ7568/BOJ7568.iml" />
       <module fileurl="file://$PROJECT_DIR$/BinarySearch/BinarySearch.iml" filepath="$PROJECT_DIR$/BinarySearch/BinarySearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/BubbleSort/BubbleSort.iml" filepath="$PROJECT_DIR$/BubbleSort/BubbleSort.iml" />
@@ -59,6 +61,7 @@
       <module fileurl="file://$PROJECT_DIR$/JUNGOL1671/JUNGOL1671.iml" filepath="$PROJECT_DIR$/JUNGOL1671/JUNGOL1671.iml" />
       <module fileurl="file://$PROJECT_DIR$/KthNumber/KthNumber.iml" filepath="$PROJECT_DIR$/KthNumber/KthNumber.iml" />
       <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MergeSort/MergeSort.iml" filepath="$PROJECT_DIR$/MergeSort/MergeSort.iml" />
       <module fileurl="file://$PROJECT_DIR$/Pagenation/Pagenation.iml" filepath="$PROJECT_DIR$/Pagenation/Pagenation.iml" />
       <module fileurl="file://$PROJECT_DIR$/PartSum/PartSum.iml" filepath="$PROJECT_DIR$/PartSum/PartSum.iml" />
       <module fileurl="file://$PROJECT_DIR$/Queue/Queue.iml" filepath="$PROJECT_DIR$/Queue/Queue.iml" />
