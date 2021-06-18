@@ -19,20 +19,20 @@ public class Main {
 
         int[] arr = new int[N];
         st = new StringTokenizer(br.readLine());
-
+        int low = -1;
         for(int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
+            low = Math.max(low, arr[i]);
         }
-        Arrays.sort(arr);
-        int low = arr[N-1];
+
         int high = IntStream.of(arr).sum();
 
 
         while(low <= high) {
             int mid = (low + high) / 2;
-            int cnt = 0, sum = 0;
+            int cnt = 0;
+            int sum = 0;
             for(int i = 0; i < N; i++) {
-
                 if(sum + arr[i] > mid) {
                     cnt++;
                     sum = 0;
