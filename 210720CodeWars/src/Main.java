@@ -26,12 +26,14 @@ public class Main {
     }
 
     public static String travel(String r, String zipcode) {
+        if(zipcode.equals("") || zipcode.isEmpty()) return ":/";
+
         String[] adds = r.split(",");
 
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher;
         List<String> s = Arrays.stream(adds)
-                .filter(each -> each.contains(zipcode))
+                .filter(each -> each.contains(zipcode) && each.endsWith(zipcode))
                 .map(add -> add.replace(" "+ zipcode, ""))
                 .collect(Collectors.toList());
 
@@ -58,3 +60,23 @@ public class Main {
         // Your code
     }
 }
+
+/*
+* 누군가의 솔루션
+* if(zipcode.trim().length() < 8){
+        return zipcode + ":/";
+      }
+      java.util.List<String> list = java.util.Arrays.stream(r.split(","))
+                            .filter(s -> s.contains(zipcode))
+                            .map(s -> s.replace(zipcode, ""))
+                            .collect(Collectors.toList());
+      String codes = list.stream()
+                              .map(s -> s.split(" ")[0])
+                              .collect(Collectors.joining(","));
+      String addresses = list.stream()
+                              .map(s -> s.replace(s.split(" ")[0], "").trim())
+                              .collect(Collectors.joining(","));
+     return String.format("%s:%s/%s", zipcode, addresses, codes);
+*
+* 훨씬 가독성 좋음..
+* */
