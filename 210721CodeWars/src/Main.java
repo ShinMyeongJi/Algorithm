@@ -22,17 +22,35 @@ public class Main {
     public static String byState(String str) {
         // your code
 
-
         Map<String, String> loc = new HashMap(){{
            put("AZ", "Arizona");
            put("CA", "California");
-           put("", "");
+           put("ID", "Idaho");
+           put("IN", "Indiana");
+           put("MA", "Massachusetts");
+           put("OK", "Oklahoma");
+           put("PA", "Pennsylvania");
+           put("VA", "Virginia");
         }};
 
+
+
         String[] items = str.split("\n");
+
 
 
 
         return "";
     }
 }
+
+/**
+ 'AZ': 'Arizona',
+ 'CA': 'California',
+ 'ID': 'Idaho',
+ 'IN': 'Indiana',
+ 'MA': 'Massachusetts',
+ 'OK': 'Oklahoma',
+ 'PA': 'Pennsylvania',
+ 'VA': 'Virginia'
+ */
