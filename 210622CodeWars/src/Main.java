@@ -9,9 +9,11 @@ public class Main {
         String[] arr = str.split(" ");
 
         for(int i = 0; i < arr.length; i++) {
-            char s = arr[i].charAt(0);
-            sb = new StringBuilder(arr[i].substring(1));
-            arr[i] = sb.append(s).append(ay).toString();
+            if(arr[i].matches("^[a-zA-Z]*$")){
+                char s = arr[i].charAt(0);
+                sb = new StringBuilder(arr[i].substring(1));
+                arr[i] = sb.append(s).append(ay).toString();
+            }
         }
 
         return String.join(" ", arr);

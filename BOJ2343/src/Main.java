@@ -33,7 +33,7 @@ public class Main {
             int cnt = 0;
             int sum = 0;
             for(int i = 0; i < N; i++) {
-                if(sum + arr[i] > mid) {
+                if(sum + arr[i] > mid) { // 초과되면 딱 그 직전까지만 더한다.
                     cnt++;
                     sum = 0;
                 }
@@ -41,9 +41,9 @@ public class Main {
             }
 
             if(sum != 0) cnt++;
+
             if(cnt <= M) {
                 high = mid - 1;
-
             }else{
                 low = mid + 1;
             }
