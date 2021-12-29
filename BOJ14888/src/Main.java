@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+
+/**
+ * BOJ 14888 - https://www.acmicpc.net/problem/14888
+ */
 public class Main {
     static int MAX = Integer.MIN_VALUE;
     static int MIN = Integer.MAX_VALUE;
@@ -34,15 +38,36 @@ public class Main {
         System.out.println(MIN);
     }
 
-    public static void DFS(int num, int count) {
+    public static void DFS(int res, int count) {
         if(count == N) {
-            if(num < MIN) MIN = num;
-            if(num > MAX) MAX = num;
+            if(res < MIN) MIN = res;
+            if(res > MAX) MAX = res;
             return;
         }
 
         for (int i = 0; i < 4; i++) {
 
+            if(operations[i] > 0) {
+
+                operations[i]--;
+
+                switch (i) {
+                    case 0:
+                        DFS(res + num[count], count + 1);
+                        break;
+                    case 1:
+                        DFS(res - num[count], count + 1);
+                        break;
+                    case 2:
+                        DFS(res * num[count], count + 1);
+                        break;
+                    case 3:
+                        DFS(res / num[count], count + 1);
+                        break;
+                }
+
+                operations[i]++;
+            }
         }
     }
 }
