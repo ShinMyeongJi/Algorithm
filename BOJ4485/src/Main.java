@@ -5,10 +5,11 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
+    static int N;
     public static void main(String[] args) throws IOException {
-        int N;
-        int[] dx = {1, -1, 0, 0};
-        int[] dy = {0, 0, 1, -1};
+
+        int[] dx = {0, 0, 1, -1};
+        int[] dy = {1, -1, 0, 0};
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -16,7 +17,6 @@ public class Main {
         N = Integer.parseInt(br.readLine());
 
         int[][] board = new int[N][N];
-        boolean[][] visited = new boolean[N][N];
 
         int[][] dist = new int[N][N];
 
@@ -25,6 +25,7 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
                 board[i][j] = Integer.parseInt(st.nextToken());
+                dist[i][j] = Integer.MAX_VALUE;
             }
         }
 
@@ -36,22 +37,40 @@ public class Main {
             Point p = pq.poll();
 
             for (int i = 0; i < 4; i++) {
+                int nextRow = p.row + dy[i];
+                int nextCol = p.col + dx[i];
 
+                if(isValid(nextRow, nextCol)) {
+                    if (dist[nextRow][nextCol] > dist[p.row][p.col] + board[nextRow][nextCol]) {
+                        dist[nextRow][nextCol] = dist[p.row][p.col] + board[nextRow][nextCol];
+                        pq.offer(new Point(nextRow, nextCol, dist[nextRow][nextCol]));
+                    }
+                }
             }
-
-
-
         }
 
+        System.out.println(dist[N-1][N-1]);
+
     }
+
+    static boolean isValid(int row, int col) {
+        if(row < 0 || row >= N || col < 0 || col >= N) return false;
+        return true;
+    }
+
 }
 
-class Point {
+class Point implements Comparable<Point>{
     int row, col, weight;
 
     public Point(int row, int col, int weight) {
         this.row = row;
         this.col = col;
         this.weight = weight;
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        return this.weight - o.weight;
     }
 }
