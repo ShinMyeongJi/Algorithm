@@ -1,27 +1,20 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-
-    static int N, D;
-
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        D = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int D = Integer.parseInt(st.nextToken());
 
         List<Point> list = new ArrayList<>();
-        int[] dist = new int[N];
+        Dist[] dist = new Dist[D + 1];
+
 
         for (int i = 0; i < N; i++) {
-            dist[i] = Integer.MAX_VALUE;
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
@@ -32,21 +25,59 @@ public class Main {
         }
 
 
+        PriorityQueue<Dist> pq = new PriorityQueue<>();
 
-        PriorityQueue<Point> pq = new PriorityQueue<>();
+        for (int i = 0; i < dist.length; i++) {
+            dist[i] = new Dist(i, Integer.MAX_VALUE);
+            if(i == 0) {
+                dist[0].dist = 0;
+                pq.offer(dist[0]);
+            }
+        }
 
-        for (int i = 0; i < )
 
         while (!pq.isEmpty()) {
-            Point nowP = pq.poll();
+            Dist d = pq.poll();
 
+            if(d.idx == D) break;
 
+            Dist next = dist[d.idx + 1];
+            if(next.dist >d.dist + 1) {
+                next.dist = d.dist + 1;
+                pq.offer(next);
+            }
+
+            for (Point p : list) {
+                if(p.start == d.idx) {
+                    Dist dNext = dist[p.end];
+                    if(dNext.dist > d.dist + p.weight) {
+                        dNext.dist = d.dist + p.weight;
+                        pq.offer(dNext);
+                    }
+                }
+            }
         }
+
+        System.out.println(dist[D].dist);
 
     }
 }
+class Dist implements Comparable<Dist>{
+    int idx, dist;
 
-class Point implements Comparable<Point>{
+    public Dist(int idx, int dist) {
+        this.idx = idx;
+        this.dist = dist;
+    }
+
+    @Override
+    public int compareTo(Dist o) {
+        return this.dist - o.dist;
+    }
+}
+
+
+class Point{
     int start, end, weight;
 
     public Point(int start, int end, int weight) {
@@ -54,9 +85,5 @@ class Point implements Comparable<Point>{
         this.end = end;
         this.weight = weight;
     }
-
-    @Override
-    public int compareTo(Point o) {
-        return 0;
-    }
 }
+
