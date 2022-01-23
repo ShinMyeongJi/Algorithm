@@ -87,6 +87,10 @@ public class Main {
                                 cnt++;
                             }
                         }
+
+                        if(cnt >= 2) {
+                            board[i][j] = 3;
+                        }
                     }
                 }
             }
