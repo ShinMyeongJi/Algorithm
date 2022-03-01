@@ -47,27 +47,34 @@ public class Main {
     }
 
     public static int bfs(int i, int j) {
+        boolean[][] visited = new boolean[N][M];
         int cnt = 0;
 
         Queue<int[]> q = new LinkedList<>();
         q.offer(new int[]{i, j});
 
         while(!q.isEmpty()) {
-            int[] temp = q.poll();
-            for (int k = 0; k < 8; k++) {
-                int nextI = temp[0] + dy[k];
-                int nextJ = temp[1] + dx[k];
+            for(int d = 0; d < q.size(); d++) {
+                int[] temp = q.poll();
 
-                if(nextI < N && nextI >= 0 && nextJ < M && nextJ >= 0) {
-                    if (space[nextI][nextJ] != 1) {
-                        cnt += 1;
-                        q.offer(new int[]{nextI, nextJ});
-                    }else {
-                        return cnt;
+                for (int k = 0; k < 8; k++) {
+                    int nextI = temp[0] + dy[k];
+                    int nextJ = temp[1] + dx[k];
+
+                    if (nextI < N && nextI >= 0 && nextJ < M && nextJ >= 0) {
+
+                        if (space[nextI][nextJ] == 1) return cnt + 1;
+
+                        if (!visited[nextI][nextJ]) {
+                            //space[nextI][nextJ] = space[i][j] + 1;
+                            q.offer(new int[]{nextI, nextJ});
+                            visited[nextI][nextJ] = true;
+                        }
                     }
-
                 }
             }
+
+            cnt += 1;
         }
 
         return cnt;
