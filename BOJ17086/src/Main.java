@@ -17,7 +17,58 @@ public class Main {
 
     static Queue<int[]> q = new LinkedList<>();
     static boolean[][] visited;
+
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        space = new int[N][M];
+
+        // way 1 - 1부터 시작해 다른 1부터 시작했을 때 보다 이동거리가 작으면 교체
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < M; j++) {
+                space[i][j] = Integer.parseInt(st.nextToken());
+                if (space[i][j] == 1) q.offer(new int[]{i, j});
+            }
+        }
+
+        bfs();
+
+        int res = Integer.MIN_VALUE;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                res = Math.max(res, space[i][j] - 1);
+            }
+        }
+
+        System.out.println(res);
+    }
+
+    public static void bfs() {
+        while (!q.isEmpty()){
+            int[] temp = q.poll();
+
+            for (int k = 0; k < 8; k++) {
+                int nextI = temp[0] + dy[k];
+                int nextJ = temp[1] + dx[k];
+
+                if (nextI < N && nextI >= 0 && nextJ < M && nextJ >= 0) {
+                    if (space[nextI][nextJ] == 0 || (space[nextI][nextJ] > space[temp[0]][temp[1]] + 1)) {
+                        space[nextI][nextJ] = space[temp[0]][temp[1]] + 1;
+                        q.offer(new int[]{nextI, nextJ});
+                    }
+                }
+            }
+        }
+    }
+
+    // way 2 - 1부터 시작해서....
+    /*public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -27,7 +78,6 @@ public class Main {
         space = new int[N][M];
         visited = new boolean[N][M];
 
-        // way 1
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
@@ -43,7 +93,9 @@ public class Main {
         for (int i = 0; i < N; i++) {
            for (int j = 0; j < M; j++) {
                res = Math.max(res, space[i][j] - 1);
+               System.out.print(space[i][j] + " ");
            }
+            System.out.println();
         }
 
         System.out.println(res);
@@ -68,10 +120,10 @@ public class Main {
                 }
             }
         }
-    }
+    }*/
 }
 
-
+// way 3 - 0부터 시작하기 (다시 해보기)
 /* for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 if (space[i][j] == 0) {
