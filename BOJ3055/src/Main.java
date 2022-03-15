@@ -15,6 +15,8 @@ public class Main {
 
     static Queue<int[]> q = new LinkedList<>();
     static Queue<int[]> water = new LinkedList<>();
+
+    static int res = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -23,11 +25,12 @@ public class Main {
         C = Integer.parseInt(st.nextToken());
 
         map = new char[R][C];
+        visited = new boolean[R][C];
 
         for (int i = 0; i < R; i++) {
-            st = new StringTokenizer(br.readLine());
+            String row = br.readLine();
             for (int j = 0; j < C; j++) {
-                map[i][j] = st.nextToken().charAt(0);
+                map[i][j] = row.charAt(j);
                 if(map[i][j] == 'S') {
                     q.offer(new int[]{i, j});
                 }else if (map[i][j] == '*') {
@@ -36,14 +39,19 @@ public class Main {
             }
         }
 
+        int move = 0;
+
         while(!q.isEmpty()) {
             waterBfs();
-            bfs();
+            bfs(++move);
         }
 
+
+        if (res == 0) System.out.println("KAKTUS");
+        else System.out.println(res);
     }
 
-    public static void bfs() {
+    public static void bfs(int move) {
         int cnt = q.size();
         while(cnt-- > 0) {
             int[] temp = q.poll();
@@ -52,8 +60,15 @@ public class Main {
                 int nextY = temp[0] + dy[i];
                 int nextX = temp[1] + dx[i];
 
-                if (isRange(nextY, nextX) && map[nextY][nextX] == '.') {
-                    q.offer(new int[]{nextY, nextX});
+                if(isRange(nextY, nextX) && !visited[nextY][nextX]) {
+                    if (map[nextY][nextX] == '.') {
+                        q.offer(new int[]{nextY, nextX});
+                        visited[nextY][nextX] = true;
+                    }else if (map[nextY][nextX] == 'D') {
+                        res = move;
+                        q.clear();
+                        return;
+                    }
                 }
             }
         }
