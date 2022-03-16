@@ -42,8 +42,8 @@ public class Main {
         int move = 0;
 
         while(!q.isEmpty()) {
-            waterBfs();
-            bfs(++move);
+            waterBfs(); // 1. 물 이동을 먼저 해주고
+            bfs(++move); // 2. 고슴도치를 이동 시켜주는데
         }
 
 
@@ -51,7 +51,7 @@ public class Main {
         else System.out.println(res);
     }
 
-    public static void bfs(int move) {
+    public static void bfs(int move) { // 3. 큐에 들어간 것은 이미 이동을 한 것. 으로 이해하면 됨.
         int cnt = q.size();
         while(cnt-- > 0) {
             int[] temp = q.poll();
