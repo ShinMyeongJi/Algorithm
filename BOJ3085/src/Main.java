@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * swap 함수 문제?!
+ */
 public class Main {
     static int N;
     static char[][] board;
@@ -12,7 +15,19 @@ public class Main {
 
         N = Integer.parseInt(br.readLine());
 
-        board = new char[N][N];
+        /*board = new char[][]{{'A', 'B'}, {'C', 'D'}};
+
+        // A, B
+        // C, D
+
+        swap(1, 0);
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                System.out.print(board[i][j] + " ") ;
+            }
+            System.out.println();
+        }*/
 
         for (int i = 0; i < N; i++) {
             String row = br.readLine();
@@ -23,6 +38,7 @@ public class Main {
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
+                // 가로 swap
                 if(j + 1 < N) {
                     //swapHor(i, j);
 
@@ -39,6 +55,7 @@ public class Main {
                     //swapHor(i, j);
                 }
 
+                // 세로 swap
                 if (i + 1 < N) {
                     //swapVer(i, j);
 
@@ -74,6 +91,13 @@ public class Main {
         board[i][j + 1] = temp;
     }*/
 
+
+    /*public static void swap(int i, int j) {
+        char temp = board[i][j];
+        board[i][j] = board[i][j + 1];
+        board[i][j + 1] = temp;
+    }*/
+
     public static int check() {
         int ans = 1;
 
@@ -81,6 +105,7 @@ public class Main {
         for (int i = 0; i < N; i++) {
             int cnt = 1;
             for (int j = 1; j < N; j++) {
+                // 옆과 같다면 먹는 개수 하나 증가
                 if (board[i][j] == board[i][j - 1]) cnt++;
                 else cnt = 1;
 
