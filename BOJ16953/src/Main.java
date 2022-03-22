@@ -31,7 +31,6 @@ public class Main {
             return;
         }
 
-
         dfs(res * 2, cnt + 1);
         dfs(res * 10 + 1, cnt + 1);
     }
