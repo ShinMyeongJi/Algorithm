@@ -40,10 +40,10 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
 
-        startX = Integer.parseInt(st.nextToken());
         startY = Integer.parseInt(st.nextToken());
-        desX = Integer.parseInt(st.nextToken());
+        startX = Integer.parseInt(st.nextToken());
         desY = Integer.parseInt(st.nextToken());
+        desX = Integer.parseInt(st.nextToken());
 
         q.offer(new Node(startX, startY));
         times[startY][startX] = 0;
@@ -65,11 +65,13 @@ public class Main {
                     int nextY = temp.y + (dy[i] * j);
                     int nextX = temp.x + (dx[i] * j);
 
-                    if (isRange(nextY, nextX) && gym[nextY][nextX] == '.') {
-                        if (times[nextY][nextX] >= times[temp.y][temp.x] + 1 && times[nextY][nextX] == Integer.MAX_VALUE) {
-                            times[nextY][nextX] = times[temp.y][temp.x] + 1;
-                            q.offer(new Node(nextY, nextX));
-                        }
+                    if (isRange(nextY, nextX)) {
+                        if (gym[nextY][nextX] == '.') {
+                            if (times[nextY][nextX] > times[temp.y][temp.x] && times[nextY][nextX] == Integer.MAX_VALUE) {
+                                times[nextY][nextX] = times[temp.y][temp.x] + 1;
+                                q.offer(new Node(nextX, nextY));
+                            }
+                        }else break;
                     }
                 }
             }
@@ -80,7 +82,7 @@ public class Main {
     }
 
     public static boolean isRange(int y, int x) {
-        if(y >= 1 && y <= N && x >= 1 && x < M) return true;
+        if(y >= 1 && y <= N && x >= 1 && x <= M) return true;
         return false;
     }
 }
@@ -91,12 +93,5 @@ class Node {
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
     }
 }
