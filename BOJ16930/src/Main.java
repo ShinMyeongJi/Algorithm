@@ -10,9 +10,14 @@ public class Main {
     static int M; // 가로
     static int K;
     static char[][] gym;
+    static int[][] times;
+
+    static int[] dy = {1, -1, 0, 0};
+    static int[] dx = {0, 0, 1, -1};
 
     static int startX, startY;
     static int desX, desY;
+    static Queue<Node> q = new LinkedList<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -22,12 +27,14 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        gym = new char[N][M];
+        gym = new char[N + 1][M + 1];
+        times = new int[N + 1][M + 1];
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
             String str = br.readLine();
-            for (int j = 0; j < M; j++) {
-                gym[i][j] = str.charAt(j);
+            for (int j = 1; j <= M; j++) {
+                gym[i][j] = str.charAt(j - 1);
+                times[i][j] = Integer.MAX_VALUE;
             }
         }
 
@@ -38,15 +45,43 @@ public class Main {
         desX = Integer.parseInt(st.nextToken());
         desY = Integer.parseInt(st.nextToken());
 
-        Queue<Node> q = new LinkedList<>();
-
         q.offer(new Node(startX, startY));
+        times[startY][startX] = 0;
 
+        bfs();
+    }
+
+    public static void bfs() {
         while(!q.isEmpty()) {
-            
+            Node temp = q.poll();
+
+            if (temp.y == desY  && temp.x == desX) {
+                System.out.println(times[desY][desX]);
+                return;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                for (int j = 1; j <= K; j++) {
+                    int nextY = temp.y + (dy[i] * j);
+                    int nextX = temp.x + (dx[i] * j);
+
+                    if (isRange(nextY, nextX) && gym[nextY][nextX] == '.') {
+                        if (times[nextY][nextX] >= times[temp.y][temp.x] + 1 && times[nextY][nextX] == Integer.MAX_VALUE) {
+                            times[nextY][nextX] = times[temp.y][temp.x] + 1;
+                            q.offer(new Node(nextY, nextX));
+                        }
+                    }
+                }
+            }
         }
 
+        System.out.println(-1);
+        return;
+    }
 
+    public static boolean isRange(int y, int x) {
+        if(y >= 1 && y <= N && x >= 1 && x < M) return true;
+        return false;
     }
 }
 
@@ -61,7 +96,6 @@ class Node {
     public int getX() {
         return x;
     }
-
     public int getY() {
         return y;
     }
