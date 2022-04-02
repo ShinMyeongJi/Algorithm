@@ -73,6 +73,9 @@ class Bulk {
 
 
 /*
+
+1차 시도.. 아무 생각없이 26가지의 숫자를 다 바꿀 생각을 했다..;
+
 for (int j = 0; j < 26; j++) {
     char change = (char) (97 + j);
 
