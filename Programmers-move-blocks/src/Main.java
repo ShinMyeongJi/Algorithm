@@ -15,8 +15,9 @@ public class Main {
         int N;
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
+        StringTokenizer st;
+
+        N = Integer.parseInt(br.readLine());
 
         int[][] board = new int[N][N];
 
