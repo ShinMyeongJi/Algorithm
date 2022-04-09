@@ -2,7 +2,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 class Solution {
-
+// https://leveloper.tistory.com/102
+// https://gre-eny.tistory.com/169
     private int n;
     private int[][] board;
     private final int[] dx = {0, 1, 0, -1};
