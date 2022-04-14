@@ -3,6 +3,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
+// 다른 풀이 체크하기
+// https://programmers.co.kr/learn/courses/30/lessons/42888/solution_groups?language=java
+
 class Solution {
     public String[] solution(String[] record) {
         StringTokenizer st;
