@@ -15,15 +15,15 @@ public class Main {
         int K = Integer.MAX_VALUE;
 
         int[] moneyPlans = new int[N];
+        int max = 0;
         int sum = 0;
         for (int i = 0; i < N; i++) {
             moneyPlans[i] = Integer.parseInt(br.readLine());
+            max = Math.max(max, moneyPlans[i]);
             sum += moneyPlans[i];
         }
 
-        Arrays.sort(moneyPlans);
-
-        int low = moneyPlans[N - 1];
+        int low = max;
         int high = sum;
 
         while (low <= high) {
