@@ -32,8 +32,12 @@ public class Main {
             rList.add(Integer.parseInt(st.nextToken()));
         }
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
+            if (sList.contains(i)) {
+                if (rList.contains(i - 1) || rList.contains(i + 1)) {
 
+                }
+            }
         }
 
     }
