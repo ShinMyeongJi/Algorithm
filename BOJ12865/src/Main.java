@@ -26,17 +26,16 @@ public class Main {
         }
 
 
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= K; j++) {
-                if (W[i] > j) {
-                    dp[i][j] = dp[i - 1][j];
-                }else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - W[i]] + V[i]);
-                }
+        for(int i = 1; i <= N; i++) {
+            for(int j = 1; j <= K; j++) {
+                if (W[i] > j) // 현재 물건의 무게가 배낭의 크기보다 크다면 --> 현재 물건은 포함되어있지 않다는 것이기 때문에 n-1의 최적해를 대입
+                    dp[i][j] = dp[i-1][j];
+                else
+                    dp[i][j] = Math.max(dp[i-1][j], V[i] + dp[i - 1][j - W[i]]);
             }
         }
 
-        System.out.println(dp[N][K]);
 
+        System.out.println(dp[N][K]);
     }
 }
