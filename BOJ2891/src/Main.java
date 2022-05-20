@@ -1,14 +1,13 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        int N, S, R;
-
+        int N, S, R; // 팀의 수, 카약이 손상된 팀의 수, 카약을 하나 더 가져온 팀의
+        int cnt = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -16,29 +15,41 @@ public class Main {
         S = Integer.parseInt(st.nextToken());
         R = Integer.parseInt(st.nextToken());
 
-
-        List<Integer> sList = new ArrayList<>();
-        List<Integer> rList = new ArrayList<>();
+        int[] breakTeam = new int[S];
+        boolean[] rList = new boolean[N + 1];
 
         st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < S; i++){
-            sList.add(Integer.parseInt(st.nextToken()));
+            breakTeam[i] = Integer.parseInt(st.nextToken());
         }
 
         st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < R; i++) {
-            rList.add(Integer.parseInt(st.nextToken()));
+            rList[Integer.parseInt(st.nextToken())] = true;
         }
 
-        for (int i = 1; i <= N; i++) {
-            if (sList.contains(i)) {
-                if (rList.contains(i - 1) || rList.contains(i + 1)) {
+        Arrays.sort(breakTeam);
 
+        for (int i = 0; i < S; i++) {
+            int temp = breakTeam[i];
+
+            if (rList[temp]) { // 자기 팀이 부서졌고 그 팀이 여분의 보트가 있으면 사용처리
+                rList[temp] = false;
+            }else {
+                if (temp > 1 && rList[temp - 1]) {
+                    rList[temp - 1] = false;
+                }else {
+                  if(temp != N && rList[temp + 1]) {
+                      rList[temp + 1] = false;
+                  }else {
+                      cnt++;
+                  }
                 }
             }
         }
+        System.out.println(cnt);
 
     }
 }
