@@ -32,11 +32,6 @@ public class Main {
             rotation();
         }
 
-        if (isS(wheel[0][0])) score += 1;
-        if (isS(wheel[1][0])) score += 2;
-        if (isS(wheel[2][0])) score += 4;
-        if (isS(wheel[3][0])) score += 8;
-
         System.out.println(calc());
     }
 
