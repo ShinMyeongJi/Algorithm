@@ -25,8 +25,7 @@ public class Main {
 
         /*for (int i = 1; i < N; i++) {
             for (int j = 1; j + i<= N; j++) {
-                dp[j][j + i] = Integer.MAX_VALUE;
-
+                dp[j][j + i] = Integer.MAX_VALU
                 for (int k = j; k <= j + i; k++) {
                     dp[j][j + i] = Math.min(dp[j][j + i], dp[j][k] + dp[k + 1][i + j] + (arrSize[j][0] * arrSize[k][1] * arrSize[j + i][1]));
                 }
