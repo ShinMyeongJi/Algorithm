@@ -1,124 +1,158 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.management.OperatingSystemMXBean;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/2638
+ * packageName    : PACKAGE_NAME
+ * fileName       : Main
+ * author         : shinmj
+ * date           : 2022-10-17
+ * description    :
+ * ===========================================================
+ * DATE              AUTHOR             NOTE
+ * -----------------------------------------------------------
+ * 2022-10-17        shinmj       최초 생성
  */
 public class Main {
-    static int N,M, time;
-    static int[][] board;
-    static int[][] visited;
-    static int[] dx = {1, -1, 0, 0};
-    static int[] dy = {0, 0, 1, -1};
-    public static void main(String[] args) throws IOException {
+    // 3은 외부 공간
+    // 4는 곧 녹을 새끼
+    // 0은 내부 공간
+    // 1은 치즈
+    static int N,M;
+    static int[][] paper;
+    static boolean[][] meltedCheese;
 
+    static int[] dy = {1, -1, 0, 0};
+    static int[] dx = {0, 0, 1, -1};
+
+    static int hour;
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        board = new int[N][M];
-        visited = new int[N][M];
+        paper = new int[N][M];
+        meltedCheese = new boolean[N][M];
 
-        for (int i = 0; i < N; i++) {
+        for(int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
-                board[i][j] = Integer.parseInt(st.nextToken());
+                paper[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
+        /*bfs();
 
 
+        for(int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.print(paper[i][j] + " ");
+            }
+            System.out.println();
+        }*/
+
+        simulation();
+
+        System.out.println(hour);
     }
 
-    public static void inOutCheck() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                visited[i][j] = 0;
-            }
-        }
+    // 치즈 내외부 체크
+    public static void bfs() {
+        Queue<Point> q = new LinkedList<>();
 
-        Queue<Point> queue = new LinkedList<>();
+        q.offer(new Point(0, 0));
 
-        queue.add(new Point(0, 0));
-        visited[0][0] = 1;
-
-        while(!queue.isEmpty()) {
-
-            Point now = queue.poll();
-            int x = now.getX();
-            int y = now.getY();
+        while (!q.isEmpty()) {
+            Point p = q.poll();
 
             for (int i = 0; i < 4; i++) {
-                int tx = x + dx[i];
-                int ty = y + dy[i];
+                int nextY = p.y + dy[i];
+                int nextX = p.x + dx[i];
 
-                if(tx >= 0 && ty >= 0 && tx < M && ty < N && visited[ty][tx] == 0 && board[ty][tx] != 1) {
-                    visited[ty][tx] = 1;
-                    board[ty][tx] = 3;
-                    queue.add(new Point(tx, ty));
-                }
-            }
-
-        }
-    }
-
-
-    public static void calculate() {
-        while(true) {
-            inOutCheck();
-
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < M; j++) {
-                    if(board[i][j] == 1) {
-                        int cnt = 0;
-
-                        for (int k = 0; k < 4; k++) {
-                            int ty = i + dy[k];
-                            int tx = j + dx[k];
-
-                            if(board[ty][tx] == 3) {
-                                cnt++;
-                            }
-                        }
-
-                        if(cnt >= 2) {
-                            board[i][j] = 3;
-                        }
+                if (isRange(nextY, nextX)) {
+                    if (paper[nextY][nextX] == 0 || paper[nextY][nextX] == 3) {
+                        paper[nextY][nextX] = 3;
+                        q.offer(new Point(nextY, nextX));
                     }
                 }
             }
         }
-    }
-}
 
-class Point {
-    int x, y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 
-    public int getX() {
-        return x;
+    public static void simulation() {
+
+        boolean isBin = false;
+        for (int i = 0; i < N; i++) {
+            Arrays.fill(meltedCheese[i], false);
+        }
+        while (true) {
+            bfs();
+
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < M; j++) {
+                    if (paper[i][j] == 1) {
+                        if (isMelted(i, j)) {
+                            isBin = true;
+                            //paper[i][j] = 3;
+                            meltedCheese[i][j] = true;
+                        }
+                    }
+                }
+            }
+
+            hour++;
+            melting();
+
+            if (!isBin) break;
+            else isBin = false;
+        }
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public static boolean isMelted(int y, int x) {
+        int cnt = 0;
+        for (int i = 0; i < 4; i++) {
+            int nextY = y + dy[i];
+            int nextX = x + dx[i];
+
+            if (paper[nextY][nextX] == 3) cnt++;
+        }
+
+        return cnt >= 2;
     }
 
-    public int getY() {
-        return y;
+    public static void melting() {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (meltedCheese[i][j]) paper[i][j] = 3;
+            }
+        }
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public static boolean isRange(int y, int x) {
+        return !(y < 0 || y >= N || x < 0 || x >= M);
     }
+
+    static class Point {
+        int y, x;
+        //int time;
+
+        Point(int y, int x) {
+            this.y = y;
+            this.x = x;
+            //this.time = time;
+        }
+
+
+    }
+
+
 }
