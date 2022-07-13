@@ -9,7 +9,7 @@ public class Main {
     static int N;
     static int[] seq;
     static boolean[] checked;
-    static int[] minuses;
+    static int[] checked_num;
 
     static int maxRes = 0;
 
@@ -21,13 +21,14 @@ public class Main {
 
         seq = new int[N];
         checked = new boolean[N];
-        minuses = new int[N];
+        checked_num = new int[N];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < N; i++) {
             seq[i] = Integer.parseInt(st.nextToken());
         }
+
 
         backtracking(0);
 
@@ -37,30 +38,25 @@ public class Main {
 
     public static void backtracking(int cnt) {
 
-        if (cnt == N - 1) {
+        if (cnt == N) {
             int sum = 0;
-            for (int i = 0; i < N; i++) {
-                sum += minuses[i];
+            for (int i = 0; i < N - 1; i++) {
+                sum += Math.abs(checked_num[i]-checked_num[i+1]);
             }
 
             maxRes = Math.max(sum, maxRes);
-            reset();
             return;
         }
 
-        for (int i = 0; i < N - 1; i++) {
+        for (int i = 0; i < N; i++) {
 
             if(checked[i]) continue;
-
             checked[i] = true;
-            minuses[cnt] = seq[i] - seq[i + 1];
+            checked_num[cnt] = seq[i];
             backtracking(cnt + 1);
             checked[i] = false;
 
         }
     }
 
-    public static void reset() {
-        Arrays.fill(checked, false);
-    }
 }
