@@ -9,12 +9,22 @@ import java.util.StringTokenizer;
  * description    :
  * packageName    : PACKAGE_NAME
  * fileName       : Main
- * author         : home
+ * author         : shinmj
  * date           : 22. 10. 23.
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
- * 22. 10. 23.        home       최초 생성
+ * 22. 10. 23.        shinmj       최초 생성
+ */
+
+/**
+4 5
+1 2 3
+1 3 1
+1 4 1
+2 3 3
+3 4 4
+2 3
  */
 public class Main {
 
@@ -25,7 +35,7 @@ public class Main {
 
     static ArrayList<ArrayList<Node>> graph;
 
-    static final int INF = Integer.MAX_VALUE;
+    static final int INF = 114748360;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -54,6 +64,7 @@ public class Main {
             int v = Integer.parseInt(st.nextToken());
 
             graph.get(s).add(new Node(d, v));
+            graph.get(d).add(new Node(s, v));
         }
 
         st = new StringTokenizer(br.readLine());
@@ -62,18 +73,14 @@ public class Main {
         mustVisit[1] = Integer.parseInt(st.nextToken());
 
         int anb = 0, bna = 0;
-        int v1Tov2 = 0;
-
-        v1Tov2 =dijkstra(mustVisit[0], mustVisit[1]);
 
         anb += dijkstra(1, mustVisit[0]);
-        anb += v1Tov2;
+        anb += dijkstra(mustVisit[0], mustVisit[1]);
         anb += dijkstra(mustVisit[1], N);
 
         bna += dijkstra(1, mustVisit[1]);
-        bna += v1Tov2;
+        bna += dijkstra(mustVisit[1], mustVisit[0]);
         bna += dijkstra(mustVisit[0], N);
-
 
         System.out.println((anb >= INF && bna >= INF) ? -1 : Math.min(anb, bna));
     }
@@ -95,7 +102,6 @@ public class Main {
 
             visited[minIndex] = true;
             int vLen = graph.get(minIndex).size();
-
             for (int j = 0; j < vLen; j++) {
                 Node nNode = graph.get(minIndex).get(j);
                 dist[nNode.des] = Math.min(dist[nNode.des], dist[minIndex] + nNode.val);
