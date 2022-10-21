@@ -98,11 +98,8 @@ public class Main {
             }
         }
 
-
         getSafetyZone();
         visited = new boolean[N][M];
-
-
     }
 
     public static void getSafetyZone() {
@@ -123,11 +120,7 @@ public class Main {
 
     public static void reset() {
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                int val = simulationLab[i][j];
-                lab[i][j] = val;
-            }
+            System.arraycopy(simulationLab[i], 0, lab[i], 0, M);
         }
-
     }
 }
