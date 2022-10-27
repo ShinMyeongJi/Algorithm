@@ -11,14 +11,26 @@ import java.util.StringTokenizer;
  * description :
  */
 
+
+// 왼쪽 한 번
+// 오른쪽 한 번
+
+/**
+5 5
+10 25 7 8 13
+68 24 -78 63 32
+12 -69 100 -29 -25
+-16 -22 -57 -33 99
+7 -76 -11 77 15
+ */
 public class Main {
 
     static int N, M;
     static int[][] values;
     static int[][] dp;
 
-    static int[] dy = {-1, 0, 0}; // 위축 (행)
-    static int[] dx = {0, 1, -1};
+    static int[] dy = {0, 1, 0}; // 왼쪽 // 아래 // 오른쪽
+    static int[] dx = {-1, 0, 1};
 
     static int max = Integer.MIN_VALUE;
     public static void main(String[] args) throws IOException {
@@ -37,31 +49,40 @@ public class Main {
             }
         }
 
-        DFS(1, 1);
+        dp[0][0] = values[0][0];
+        DFS(0, 0);
         System.out.println(dp[N -1][M - 1]);
     }
 
 
-    public static int DFS(int i, int j) {
-        if (i == N && j == M) return values[N - 1][M - 1];
+    public static void DFS(int startY, int startX) {
 
-
-        for (int k = 0; k < 3; k++) {
-
-            int nextY = i + dy[k];
-            int nextX = j + dx[k];
-
-            if (isRange(nextY, nextX)) {
-                dp[i][j] = Math.max(dp[i][j], DFS(nextY, nextX) + values[i][j]);
+        if (startY == 0) { // 맨 첫 줄
+            for (int i = 0; i < M - 1; i++) {
+                dp[startY][i + 1] = dp[startY][i] + values[startY][i + 1];
             }
+            startY += 1;
+        }
+
+        for (int i = 0; i < M - 1; i++) {
+
         }
 
 
-        return dp[i][j];
+    }
+
+
+    public static void print() {
+        for(int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.print(dp[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     public static boolean isRange(int i, int j) {
-        if (i < 0 || i >= N || j < 0 || j >= N) return false;
+        if (i < 0 || i >= N || j < 0 || j >= M) return false;
 
         return true;
     }
